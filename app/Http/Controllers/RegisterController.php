@@ -22,6 +22,10 @@ class RegisterController extends Controller
         //Validacion
         $request->validate([
             'name' => 'required | min:5',
+            'username' => 'required | unique:users | min:3 | max:20',
+            'email' => 'required | unique:users | email | max:60',
+            'password' => 'required',
+            'password_confirmation' => 'required',
         ]);
     }
 }
