@@ -43,7 +43,7 @@
 
                 <div class="mb-5">
                     <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">Password de Registro</label>
-                    <input id="password" name="password" type="password" placeholder="Ingresa tu Password" class="border p-3 w-full rounded-lg @error ('name') border-red-500 @enderror" value={{old('password')}}>
+                    <input id="password" name="password" type="password" placeholder="Ingresa tu Password" class="border p-3 w-full rounded-lg @error ('name') border-red-500 @enderror">
 
                     @error('password')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
@@ -52,7 +52,7 @@
 
                 <div class="mb-5">
                     <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">Confirma tu Password</label>
-                    <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirma tu Password" class="border p-3 w-full rounded-lg @error ('name') border-red-500 @enderror" value={{old('password_confirmation')}}>
+                    <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirma tu Password" class="border p-3 w-full rounded-lg @error ('name') border-red-500 @enderror">
 
                     @error('password_confirmation')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
