@@ -22,10 +22,9 @@ class RegisterController extends Controller
         //Validacion
         $request->validate([
             'name' => 'required | min:5',
-            'username' => 'required | unique:users | min:3 | max:20',
-            'email' => 'required | unique:users | email | max:60',
-            'password' => 'required | min:6',
-            'password_confirmation' => 'required | confirmed',
+            'username' => 'required | unique:users| min:3 | max:20',
+            'email' => 'required | unique:users| email | max:60',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         dd('Creando Usuario');
