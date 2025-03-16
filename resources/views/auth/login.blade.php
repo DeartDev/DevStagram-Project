@@ -13,6 +13,7 @@
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
             <form method="POST" action="{{route('login')}}">
+                {{-- Para proporcionar seguridad al momento de realizar una consulta a la base de dato --}}
                 @csrf
 
                 @if (session('mensaje'))

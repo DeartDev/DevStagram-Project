@@ -17,15 +17,21 @@
 
                 {{-- Navegacion solo para usuarios autenticados --}}
                 @auth
-                    <nav>
+                    <nav class="flex items-center space-x-4">
                         <a class="font-bold capitalize text-gray-600 text-sm" href="#">Hola: <span class="font-normal"> {{auth()->user()->username}} </span></a>
-                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('logout')}}">Cerrar Sesión</a>
+                        
+                        <form action="{{route('logout')}}" method="POST">
+                            {{-- Para proporcionar seguridad al momento de realizar una consulta a la base de dato --}}
+                            @csrf 
+                            <button type="submit" class="font-bold uppercase text-gray-600 text-sm">Cerrar Sesión</button>
+                        </form>
+                        
                     </nav>
                 @endauth
 
                 {{-- Navegacion para usuarios no autenticados --}}
                 @guest
-                    <nav>
+                    <nav class="flex items-center space-x-4">
                         <a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
                         <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('register')}}">Crear Cuenta</a>
                     </nav>
