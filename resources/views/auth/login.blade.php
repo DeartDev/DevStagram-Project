@@ -15,6 +15,14 @@
             <form method="POST" action="{{route('login')}}">
                 @csrf
 
+                @if (session('mensaje'))
+
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
+                        {{session('mensaje')}}
+                    </p>
+                    
+                @endif()
+
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">Email</label>
                     <input id="email" name="email" type="text" placeholder="Tu Email de Registro" class="border p-3 w-full rounded-lg @error ('email') border-red-500 @enderror" value={{old('email')}}>
