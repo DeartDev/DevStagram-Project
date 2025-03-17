@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index(User $user)
     {
         // dd($user->username);
-        return view('dashboard');
+        return view('dashboard', ['user'=>$user]);
 
     }
 }
