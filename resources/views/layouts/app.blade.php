@@ -42,7 +42,7 @@
                 {{-- Navegacion para usuarios no autenticados --}}
                 @guest
                     <nav class="flex items-center space-x-4">
-                        <a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('login')}}">Login</a>
                         <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('register')}}">Crear Cuenta</a>
                     </nav>
                 @endguest
