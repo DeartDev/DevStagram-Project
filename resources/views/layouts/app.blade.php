@@ -27,8 +27,8 @@
                             </svg>
                             Crear
                         </a>                          
-
-                        <a class="font-bold capitalize text-gray-600 text-sm" href="#">Hola: <span class="font-normal"> {{auth()->user()->username}} </span></a>
+                        {{-- Se agrega ruta con el usuario autenticado para redireccionar al muro --}}
+                        <a class="font-bold capitalize text-gray-600 text-sm" href="{{route('post.index', Auth::user()->username)}}">Hola: <span class="font-normal"> {{auth()->user()->username}} </span></a>
                         
                         <form action="{{route('logout')}}" method="POST">
                             {{-- Para proporcionar seguridad al momento de realizar una consulta a la base de dato --}}
