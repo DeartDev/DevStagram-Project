@@ -4,13 +4,19 @@
     Crea Una Nueva Publicación.
 @endsection
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone/dist/min/dropzone.min.css">    
+@endpush
+
 
 @section('contenido')
 
     <div class="md:flex md:item-center">
 
         <div class="md:w-1/2 px-10">
-            Imagen aqui
+            <form action="{{ route('imagenes.store') }}" method="POST" enctype="multipart/form-data" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 flex flex-col justify-center items-center">
+                @csrf
+            </form>
         </div>
 
         <div class="md:w-1/2 p-10 bg-white rounded-lg shadow-xl mt-10 md:mt-0">

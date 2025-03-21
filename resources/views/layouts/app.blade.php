@@ -3,10 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        @stack('styles')
         <title>DevStagram - @yield('titulo')</title>
         {{-- Esta linea es para utilizar tailwindcss, se debe ejetutar el servidor de desarrollo de vite (npn run dev) --}}
-        @vite('resources/css/app.css')
+        {{-- @vite('resources/css/app.css') --}}
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
     </head>
     <body class="bg-gray-100">
 
