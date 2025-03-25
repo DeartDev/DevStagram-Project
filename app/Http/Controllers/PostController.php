@@ -21,4 +21,17 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'titulo' => 'required|max:255',
+            'descripcion' => 'required',
+            'imagen' => 'required|image',
+        ]);
+
+        $request->user()->posts()->create($request->only('content'));
+
+        return redirect()->route('post.index', Auth::user());
+    }
 }

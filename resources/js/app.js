@@ -9,6 +9,20 @@ const dropzone = new Dropzone('#dropzone', {
     dictRemoveFile: 'Borrar archivo',
     maxFiles: 1,
     uploadMultiple: false,
+
+    init:function(){
+        if(document.querySelector('#imagen').value.trim()){
+            const imagenPublicada = {};
+            imagenPublicada.size = 1234;
+            imagenPublicada.name = document.querySelector('#imagen').value;
+
+            this.options.addedfile.call(this, imagenPublicada);
+            this.options.thumbnail.call(this, imagenPublicada, `/uploads/${imagenPublicada.name}`);
+
+            imagenPublicada.previewElement.classList.add('dz-success', 'dz-complete');
+
+        }
+    },
 });
 
 
@@ -21,7 +35,8 @@ dropzone.on('sending', function(file, xhr, formData) {
  
 // Evento para cuando se ha subido un archivo
 dropzone.on('success', function(file, response) {
-    console.log(response);
+    //console.log(response.imagen);
+    document.querySelector('#imagen').value = response.imagen;
 });
 
 // Evento para cuando ha ocurrido un error al subir un archivo
@@ -31,5 +46,5 @@ dropzone.on('error', function(file, message) {
 
 // Evento para cuando se ha eliminado un archivo
 dropzone.on('removedfile', function() {
-    console.log('Archivo eliminado');
+    document.querySelector('#imagen').value = "";
 });
