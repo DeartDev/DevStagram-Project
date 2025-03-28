@@ -34,7 +34,7 @@
 
                 <div class="mb-5">
                     <label for="descripcion" class="mb-2 block uppercase text-gray-500 font-bold">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" placeholder="Descripción de la Publicación" class="border p-3 w-full rounded-lg @error ('titulo') border-red-500 @enderror">{{old('descripcion')}}</textarea>
+                    <textarea id="descripcion" name="descripcion" placeholder="Descripción de la Publicación" class="border p-3 w-full rounded-lg @error ('descripcion') border-red-500 @enderror">{{old('descripcion')}}</textarea>
 
                     @error('descripcion')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="mb-5 ">
-                    <input type="imagen" name="imagen" id="imagen" value="{{ old('imagen') }}" class="hidden">
+                    <input type="hidden" name="imagen" id="imagen" value="{{ old('imagen') }}">
 
                     @error('imagen')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>                        

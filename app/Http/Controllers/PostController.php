@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use App\Models\Post;
 use App\Models\User;
-use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Configuration\Middleware;
 
 class PostController extends Controller
 {
@@ -24,14 +25,25 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
+        // dd($request->all());
+
         $request->validate([
             'titulo' => 'required|max:255',
             'descripcion' => 'required',
-            'imagen' => 'required|image',
+            'imagen' => 'required|string',
         ]);
 
         $request->user()->posts()->create($request->only('content'));
 
-        return redirect()->route('post.index', Auth::user());
+
+        Post::create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('post.index', Auth::user()->username);
     }
 }
