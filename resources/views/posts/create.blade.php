@@ -4,6 +4,7 @@
     Crea Una Nueva Publicación.
 @endsection
 
+{{-- Se utiliza el push para agregar estilos a la vista --}}
 @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone/dist/min/dropzone.min.css">    
 @endpush
@@ -14,6 +15,8 @@
     <div class="md:flex md:item-center">
 
         <div class="md:w-1/2 px-10">
+
+            {{-- Se utiliza el atributo enctype para poder enviar archivos a la base de datos --}}
             <form action="{{ route('imagenes.store') }}" method="POST" enctype="multipart/form-data" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 flex flex-col justify-center items-center">
                 @csrf
             </form>
