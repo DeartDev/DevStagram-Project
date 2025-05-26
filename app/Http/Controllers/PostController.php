@@ -27,7 +27,7 @@ class PostController extends Controller
     {
 
         // dd($request->all());
-
+        // Validar los datos del formulario
         $request->validate([
             'titulo' => 'required|max:255',
             'descripcion' => 'required',
