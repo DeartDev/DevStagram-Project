@@ -34,6 +34,7 @@ class PostController extends Controller
             'imagen' => 'required|string',
         ]);
 
+        // Crear el post asociado al usuario autenticado
         $request->user()->posts()->create($request->only('content'));
 
 
