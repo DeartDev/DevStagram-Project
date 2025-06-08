@@ -9,4 +9,12 @@ class Post extends Model
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
+
+    // Definir la tabla asociada al modelo
+    protected $fillable = [
+        'titulo',
+        'descripcion',
+        'imagen',
+        'user_id',
+    ];
 }

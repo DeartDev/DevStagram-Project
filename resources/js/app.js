@@ -1,30 +1,33 @@
 import Dropzone from 'dropzone';
 
-Dropzone.autoDiscover = false;
-
-// Configuración de Dropzone
 const dropzone = new Dropzone('#dropzone', {
+    url: '/imagenes',  // Asegúrate de que coincida con tu ruta en Laravel
     dictDefaultMessage: 'Sube aquí tu imagen',
     acceptedFiles: '.jpg, .jpeg, .png, .gif',
     addRemoveLinks: true,
     dictRemoveFile: 'Borrar archivo',
     maxFiles: 1,
     uploadMultiple: false,
-
-    // Parámetros para enviar la imagen
-    init:function(){
-        if(document.querySelector('[name="imagen"]').value.trim()){
-            const imagenPublicada = {};
-            imagenPublicada.size = 1234;
-            imagenPublicada.name = document.querySelector('[name="imagen"]').value;
-
-            this.options.addedfile.call(this, imagenPublicada);
-            this.options.thumbnail.call(this, imagenPublicada, `/uploads/${imagenPublicada.name}`);
-
+    headers: {  // Envía el token CSRF
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+    },
+    init: function() {
+        if (document.querySelector('[name="imagen"]').value.trim()) {
+            const imagenPublicada = {
+                size: 1234,
+                name: document.querySelector('[name="imagen"]').value
+            };
+            this.emit("addedfile", imagenPublicada);
+            this.emit("thumbnail", imagenPublicada, `/uploads/${imagenPublicada.name}`);
             imagenPublicada.previewElement.classList.add('dz-success', 'dz-complete');
-
         }
     },
+});
+
+// Evento para manejar errores del servidor
+dropzone.on('error', function(file, errorMessage, xhr) {
+    console.error('Error del servidor:', xhr.responseJSON || errorMessage);
+    this.removeFile(file);  // Elimina el archivo si hay error
 });
 
 

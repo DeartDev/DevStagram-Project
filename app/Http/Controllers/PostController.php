@@ -23,7 +23,7 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    /* public function store(Request $request)
     {
 
         // dd($request->all());
@@ -43,6 +43,25 @@ class PostController extends Controller
             'descripcion' => $request->descripcion,
             'imagen' => $request->imagen,
             'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('post.index', Auth::user()->username);
+    } */
+
+    public function store(Request $request)
+    {
+        // Validar los datos del formulario
+        $validatedData = $request->validate([
+            'titulo' => 'required|max:255',
+            'descripcion' => 'required',
+            'imagen' => 'required|string',
+        ]);
+
+        // Crear el post asociado al usuario autenticado
+        $request->user()->posts()->create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen
         ]);
 
         return redirect()->route('post.index', Auth::user()->username);
