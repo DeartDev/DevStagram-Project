@@ -58,11 +58,19 @@ class PostController extends Controller
         ]);
 
         // Crear el post asociado al usuario autenticado
-        $request->user()->posts()->create([
+        /* $request->user()->posts()->create([
             'titulo' => $request->titulo,
             'descripcion' => $request->descripcion,
             'imagen' => $request->imagen
-        ]);
+        ]); */
+
+        //Otra forma de crear el post
+        $post = new Post();
+        $post->titulo = $request->titulo;
+        $post->descripcion = $request->descripcion;
+        $post->imagen = $request->imagen;
+        $post->user_id = Auth::id();
+        $post->save();
 
         return redirect()->route('post.index', Auth::user()->username);
     }
