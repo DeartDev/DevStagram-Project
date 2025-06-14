@@ -65,12 +65,20 @@ class PostController extends Controller
         ]); */
 
         //Otra forma de crear el post
-        $post = new Post();
+        /* $post = new Post();
         $post->titulo = $request->titulo;
         $post->descripcion = $request->descripcion;
         $post->imagen = $request->imagen;
         $post->user_id = Auth::id();
-        $post->save();
+        $post->save(); */
+
+        //Una forma mas para crear el post
+        $request->user()->posts()->create([
+            'titulo' => $validatedData['titulo'],
+            'descripcion' => $validatedData['descripcion'],
+            'imagen' => $validatedData['imagen'],
+            'user_id' => Auth::id(), // No es necesario, ya que se usa el método de relación
+        ]);
 
         return redirect()->route('post.index', Auth::user()->username);
     }
