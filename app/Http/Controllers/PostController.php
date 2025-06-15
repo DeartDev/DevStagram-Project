@@ -13,8 +13,13 @@ class PostController extends Controller
     // Redireccion al muro
     public function index(User $user)
     {
-        // dd($user->username);
-        return view('dashboard', ['user'=>$user]);
+
+        $posts = Post::where('user_id',$user->id)->get();
+        
+        return view('dashboard', [
+            'user'=>$user,
+            'posts' => $posts,
+        ]);
 
     }
 
