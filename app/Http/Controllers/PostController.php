@@ -15,7 +15,7 @@ class PostController extends Controller
     {
 
         // Instancia del usuario autenticado
-        $posts = Post::where('user_id',$user->id)->paginate(4);
+        $posts = Post::where('user_id',$user->id)->paginate(20);
 
         return view('dashboard', [
             'user'=>$user,
