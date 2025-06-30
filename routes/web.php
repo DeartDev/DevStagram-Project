@@ -22,6 +22,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index')->middleware('auth'); //Valida que el usuario esté autenticado
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');// Muestra un post en específico
 
 // Ruta para cargar imagenes
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');

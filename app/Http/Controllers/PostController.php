@@ -88,4 +88,13 @@ class PostController extends Controller
 
         return redirect()->route('post.index', Auth::user()->username);
     }
+
+    // Muestra un post en específico
+    // El post se obtiene por el slug, que es un identificador único
+    public function show(Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post,
+        ]);
+    }
 }
