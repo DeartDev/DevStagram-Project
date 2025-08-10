@@ -91,9 +91,10 @@ class PostController extends Controller
 
     // Muestra un post en específico
     // El post se obtiene por el slug, que es un identificador único
-    public function show(Post $post)
+    public function show(User $user, Post $post)
     {
         return view('posts.show', [
+            'user' => $user,
             'post' => $post,
         ]);
     }
